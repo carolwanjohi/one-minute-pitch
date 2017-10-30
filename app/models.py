@@ -45,4 +45,47 @@ class User(UserMixin,db.Model):
 
     def __repr__(self):
         return f'User {self.username}'
+
+
+
+class Group(db.Model):
+    '''
+    Group class to define the categories for pitches
+    '''
+
+    # Name of the table
+    __tablename__ = 'groups'
+
+    # id column that is the primary key
+    id = db.Column(db.Integer, primary_key = True)
+    
+    # name column for names of categories
+    name = db.Column(db.String(255))
+
+    def save_group(self):
+        '''
+        Function that saves a new category to the groups table
+        '''
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def get_groups(cls):
+        '''
+        Function that queries the database and returns all the information from the groups table
+
+        Returns:
+            groups : all the information in the groups table
+        '''
+
+        groups = Group.query.all()
+
+        return groups
+
+
+
+
+
+
+
         
