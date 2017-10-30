@@ -1,2 +1,58 @@
-# one-minute-pitch
-An application that allows users to make one minute pitches and get feedback and votes on them.
+# One Minute Pitch
+## An application that allows users to make one minute pitches and get feedback and votes on them., 30/10/2017
+
+
+## By **[Carol Wanjohi](https://github.com/carolwanjohi)**
+
+## Description
+[This]() is a web application that allows users to submit a pitch. Also, other users are allowed to vote on submitted pitches and leave comments to give their feedback on the pitches. For a user to submit a pitch, vote on a pitch or give feedback on a pitch they need to have an account. <br>
+
+The pitches are organized by categories. The current categories are: <br> 
+- pickup lines
+- interview pitches
+- product pitches
+- promotion pitches
+
+## User Stories
+As a user I would like:
+* to view the different categories
+* to see the pitches other people have posted
+* to submit a pitch in any category
+* to comment on the different pitches and leave feedback
+* to vote on the pitch and give it a downvote or upvote
+
+## Specifications
+| Behavior        | Input           | Outcome  |
+| ------------- |:-------------:| -----:|
+| Log in | Your email : jane@doe.com <br> Password : doe1 | Logged in |
+| Display pitch categories | N/A | List of various pitch categories |
+| See pitches from selected category | **Click** a category | Directed to a page with a list of pitches from the selected category |
+| Create a pitch | **Click Create A Pitch** | An authenticated user is directed to a page with a form where the user can create and submit a pitch |
+| See a pitch | **Click** on a pitch | A user is directed to a page containing the pitch, its comments and its votes |
+| Comment on a pitch | **Click Comment** | An authenticated user is directed to a page with a form where the user can create and submit a comment on a pitch |
+| Upvote on a pitch | **Click** on upvote glyphicon | The votes on the pitch increases by one |
+| Downvote on a pitch | **Click** on downvote glyphicon | The votes on the pitch decreases by one |
+
+## Setup/Installation Requirements
+
+* Click [One Minute Pitch]() <br/>
+  or <br/>
+* Copy [One Minute Pitch]() and  Paste the link on your prefered browerser
+
+This requires internet connection.
+
+## Known Bugs
+
+No known bugs
+
+## Technologies Used
+- Python3.6
+- Flask
+- Bootstrap
+- Postgres Database
+- CSS
+- HTML
+
+### License
+
+MIT (c) 2017 **[Carol Wanjohi](https://github.com/carolwanjohi)**
