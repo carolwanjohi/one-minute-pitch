@@ -34,6 +34,9 @@ class User(UserMixin,db.Model):
     # relationship between user and line class
     lines = db.relationship('Line', backref='user', lazy='dynamic')
 
+    # relationship between user and comment class
+    comments = db.relationship('Comment', backref='user', lazy='dynamic')
+
     @property
     def password(self):
         raise AttributeError('You cannot read the password attribute')
@@ -109,6 +112,9 @@ class Line(db.Model):
     # user_id column for linking a line to a specific group
     user_id = db.Column(db.Integer, db.ForeignKey("users.id") )
 
+    # relationship between line and comment class
+    comments = db.relationship('Comment', backref='line', lazy='dynamic')
+
     def save_line(self):
         '''
         Function that saves a new pitch to the lines table
@@ -128,9 +134,51 @@ class Line(db.Model):
             lines : all the information for lines with the specific group id 
         '''
         lines = Line.query.order_by(Line.id.desc()).filter_by(group_id=group_id).all()
-        # lines = Line.query.filter_by(group_id=group_id).all()
 
         return lines
+
+class Comment(db.Model):
+    '''
+    Comment class to define the feedback from users
+    '''
+
+    # Name of the table
+    __tablename__ = 'comments'
+
+    # id column that is the primary key
+    id = db.Column(db.Integer, primary_key = True)
+
+    # comment_content for the feedback a user gives toa pitch
+    comment_content = db.Column(db.String)
+
+    # line_id column for linking a line to a specific line
+    line_id = db.Column(db.Integer, db.ForeignKey("lines.id") )
+
+    # user_id column for linking a line to a specific group
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id") )
+
+    def save_comment(self):
+        '''
+        Function that saves a new comment given as feedback to a pitch
+        '''
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def get_comments(cls,line_id):
+        '''
+        Function that queries the Comments Table in the database and returns only information with the specified line id
+
+        Args:
+            line_id : specific line_id
+
+        Returns:
+            comments : all the information for comments with the specific line id 
+        '''
+        comments = Comment.query.order_by(Line.id.desc()).filter_by(line_id=line_id).all()
+
+        return comments
+
 
 
 

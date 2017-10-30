@@ -15,12 +15,6 @@ class TestGroup(unittest.TestCase):
         '''
         self.new_group = Group(name="Pick-up lines" )
 
-    def tearDown(self):
-        '''
-        Using query.delete to delete elements in the database after each test
-        '''
-        Group.query.delete()
-
     def test_instance(self):
         '''
         Test case to check if new_group is an instance of Group

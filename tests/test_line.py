@@ -1,5 +1,5 @@
 import unittest
-from app.models import Line,Group
+from app.models import Line,Group,User
 
 class TestLine(unittest.TestCase):
     '''
@@ -14,16 +14,18 @@ class TestLine(unittest.TestCase):
         Set up method that will run before every Test
         '''
         self.group_pick_up = Group( name="Pick-up lines" )
-        self.group_pick_up.save_group()
 
-        self.new_line = Line( line_content="I am Groot" )
+        self.user_jane = User(username = "Jane", password = "banana", email = "jane@doe.com" )
+
+        self.new_line = Line( line_content="I am Groot", group = self.group_pick_up, user = self.user_jane )
 
     def tearDown(self):
         '''
         Using query.delete to delete elements in the database after each test
         '''
-        Group.query.delete()
         Line.query.delete()
+        User.query.delete()
+        Group.query.delete()
 
     def test_instance(self):
         '''
@@ -35,7 +37,9 @@ class TestLine(unittest.TestCase):
         '''
         Test case to check if a line is saved to the databse
         '''
+
         self.new_line.save_line()
+
         self.assertTrue( len(Line.query.all()) > 0)
 
     def test_get_lines(self):
@@ -43,9 +47,14 @@ class TestLine(unittest.TestCase):
         Test case to check if a line and its information is returned by the get_lines function that takes in an id and match it to id in the group table
         '''
 
+        Line.query.delete()
+        User.query.delete()
+        Group.query.delete()
+
         self.new_line.save_line()
 
         gotten_lines = Line.get_lines(4990826417581240726341234)
+
         self.assertFalse( len(gotten_lines) == 1)
 
 
