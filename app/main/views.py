@@ -16,5 +16,17 @@ def index():
 
     return render_template('index.html', title = title, groups=groups )
 
+@main.route('/group/<int:id>')
+def group(id):
+
+    '''
+    View group route function that returns a list of pitches in the route and allows a user to create a pitch for the selected route
+    '''
+    group = Group.query.get(id)
+    title = f'{group.name} page'
+
+    return render_template('group.html', title=title, group=group)
+
+
    
 
