@@ -29,5 +29,7 @@ def group(id):
     return render_template('group.html', title=title, group=group, lines=lines)
 
 
+
+
    
 
