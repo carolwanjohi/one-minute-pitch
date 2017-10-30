@@ -76,3 +76,43 @@
 
 {% endmacro %}
 
+
+<!-- Display lines -->
+{% macro displayCommentList(comment_list) %}
+
+
+    {% for comment in comment_list %}
+        <div class="row">
+            
+            <div class="col-md-2 col-lg-2">
+                
+            </div>
+
+            <div class=" col-xs-12 col-sm-12 col-md-8 col-lg-8">
+            
+                <li>
+
+                    <h4>
+                        
+                        {{ comment.comment_content}}
+
+                        <br>
+
+                        <small> by {{ comment.user.username }} </small>
+                        
+                    </h4>
+
+                </li>
+
+            </div>
+
+            <div class="col-md-2 col-lg-2">
+                
+            </div>
+
+        </div>
+
+    {% endfor %}
+
+{% endmacro %}
+

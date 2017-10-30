@@ -175,7 +175,7 @@ class Comment(db.Model):
         Returns:
             comments : all the information for comments with the specific line id 
         '''
-        comments = Comment.query.order_by(Line.id.desc()).filter_by(line_id=line_id).all()
+        comments = Comment.query.filter_by(line_id=line_id).all()
 
         return comments
 

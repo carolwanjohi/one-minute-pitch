@@ -8,3 +8,10 @@ class LineForm(FlaskForm):
     '''
     line_content =  StringField('One Minute Pitch', validators=[Required()])
     submit = SubmitField('Submit')
+
+class CommentForm(FlaskForm):
+    '''
+    Function to create a wtf form for creating a feedback on a pitch
+    '''
+    comment_content =  StringField('Comment', validators=[Required()])
+    submit = SubmitField('Submit')

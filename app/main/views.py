@@ -1,7 +1,7 @@
 from flask import render_template,request,redirect,url_for,abort
 from . import main
-from ..models import Group,Line
-from .forms import LineForm
+from ..models import Group,Line,Comment
+from .forms import LineForm,CommentForm
 from flask_login import login_required,current_user
 
 # Views
@@ -61,9 +61,34 @@ def single_line(id):
     View single line function that returns a page containing a pitch, its comments and votes
     '''
     line = Line.query.get(id)
+    comments = Comment.get_comments(id)
     title = f'Pitch {line.id} page'
 
-    return render_template('line.html', title=title, line=line)
+    return render_template('line.html', title=title, line=line, comments=comments)
+
+@main.route('/line/new/<int:id>', methods=['GET','POST'])
+@login_required
+def new_comment(id):
+
+    '''
+    View new line route function that returns a page with a form to create a pitch for the specified category
+    '''
+    line = Line.query.filter_by(id=id).first()
+
+    if line is None:
+        abort(404)
+
+    form = CommentForm()
+
+    if form.validate_on_submit():
+        comment_content = form.comment_content.data
+        new_comment = Comment( comment_content=comment_content, line=line, user=current_user)
+        new_comment.save_comment()
+
+        return redirect(url_for('.single_line', id=line.id ))
+
+    title = 'New Line page'
+    return render_template('new_comment.html', title=title, comment_form=form)
 
 
 
