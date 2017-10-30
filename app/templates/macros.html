@@ -51,15 +51,16 @@
                 <li class="text-center">
 
                     <h3>
+
+                        <a href="{{url_for('main.single_line', id = line.id )}}">
                             {{ line.line_content }}
+                        </a>
+
+                        <br>
+
+                        <small> by {{ line.user.username }} </small>
                         
                     </h3>
-
-                    <br>
-                    
-                    <p>
-                        by {{ line.user.username }}
-                    </p>  
 
                 </li>
 

@@ -54,6 +54,18 @@ def new_line(id):
     title = 'New Pitch page'
     return render_template('new_line.html', title=title, line_form=form)
 
+@main.route('/line/<int:id>')
+def single_line(id):
+
+    '''
+    View single line function that returns a page containing a pitch, its comments and votes
+    '''
+    line = Line.query.get(id)
+    title = f'Pitch {line.id} page'
+
+    return render_template('line.html', title=title, line=line)
+
+
 
    
 
