@@ -14,6 +14,13 @@ class TestUser(unittest.TestCase):
         Set up method that will run before every Test
         '''
         self.new_user = User(username = "John", password = "banana", email = "john@doe.com" )
+    
+
+    def tearDown(self):
+        '''
+        Using query.delete to delete elements in the database after each test
+        '''
+        User.query.delete()
 
     def test_instance(self):
         '''
