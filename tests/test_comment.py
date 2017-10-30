@@ -46,20 +46,19 @@ class TestComment(unittest.TestCase):
 
         self.assertTrue( len(Comment.query.all()) > 0)
 
-    # def test_get_comments(self):
-    #     '''
-    #     Test case to check if a comment and its information is returned by the get_comments function that takes in an id and match it to id in the group table
-    #     '''
+    def test_get_comments(self):
+        '''
+        Test case to check if a comment and its information is returned by the get_comments function that takes in an id and match it to id in the group table
+        '''
+        Comment.query.delete()
+        Line.query.delete()
+        User.query.delete()
+        Group.query.delete()
 
-    #     Comment.query.delete()
-    #     Line.query.delete()
-    #     User.query.delete()
-    #     Group.query.delete()
+        self.new_comment.save_comment()
 
-    #     self.new_comment.save_comment()
+        gotten_comments = Comment.get_comments(4990826417581240726341234)
 
-    #     gotten_comments = Comment.get_comments(4990826417581240726341234)
-
-    #     self.assertFalse( len(gotten_comments) == 1)
+        self.assertFalse( len(gotten_comments) == 1)
 
 
