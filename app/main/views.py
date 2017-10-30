@@ -1,5 +1,6 @@
 from flask import render_template,request,redirect,url_for,abort
 from . import main
+from ..models import Group
 
 # Views
 @main.route('/')
@@ -11,6 +12,9 @@ def index():
 
     title = 'Home'
 
-    return render_template('index.html', title = title )
+    groups = Group.get_groups()
+
+    return render_template('index.html', title = title, groups=groups )
+
    
 
