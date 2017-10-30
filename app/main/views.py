@@ -1,6 +1,6 @@
 from flask import render_template,request,redirect,url_for,abort
 from . import main
-from ..models import Group
+from ..models import Group,Line
 
 # Views
 @main.route('/')
@@ -23,9 +23,10 @@ def group(id):
     View group route function that returns a list of pitches in the route and allows a user to create a pitch for the selected route
     '''
     group = Group.query.get(id)
+    lines = Line.get_lines(id)
     title = f'{group.name} page'
 
-    return render_template('group.html', title=title, group=group)
+    return render_template('group.html', title=title, group=group, lines=lines)
 
 
    
