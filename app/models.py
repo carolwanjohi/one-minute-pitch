@@ -31,6 +31,9 @@ class User(UserMixin,db.Model):
     # password_hash column for passwords
     password_hash = db.Column(db.String(255))
 
+    # relationship between user and line class
+    lines = db.relationship('Line', backref='user', lazy='dynamic')
+
     @property
     def password(self):
         raise AttributeError('You cannot read the password attribute')
@@ -103,6 +106,9 @@ class Line(db.Model):
     # group_id column for linking a line to a specific group
     group_id = db.Column(db.Integer, db.ForeignKey("groups.id") )
 
+    # user_id column for linking a line to a specific group
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id") )
+
     def save_line(self):
         '''
         Function that saves a new pitch to the lines table
@@ -111,17 +117,18 @@ class Line(db.Model):
         db.session.commit()
 
     @classmethod
-    def get_lines(cls,id):
+    def get_lines(cls,group_id):
         '''
         Function that queries the Lines Table in the database and returns only information with the specified group id
 
         Args:
-            id : specific group_id
+            group_id : specific group_id
 
         Returns:
             lines : all the information for lines with the specific group id 
         '''
-        lines = Line.query.filter_by(group_id=id).all()
+        lines = Line.query.order_by(Line.id.desc()).filter_by(group_id=group_id).all()
+        # lines = Line.query.filter_by(group_id=group_id).all()
 
         return lines
 

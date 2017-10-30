@@ -2,6 +2,7 @@ from flask import render_template,request,redirect,url_for,abort
 from . import main
 from ..models import Group,Line
 from .forms import LineForm
+from flask_login import login_required,current_user
 
 # Views
 @main.route('/')
@@ -30,6 +31,7 @@ def group(id):
     return render_template('group.html', title=title, group=group, lines=lines)
 
 @main.route('/group/line/new/<int:id>', methods=['GET','POST'])
+@login_required
 def new_line(id):
 
     '''
@@ -44,7 +46,7 @@ def new_line(id):
 
     if form.validate_on_submit():
         line_content = form.line_content.data
-        new_line = Line( line_content=line_content, group=group)
+        new_line = Line( line_content=line_content, group=group, user=current_user)
         new_line.save_line()
 
         return redirect(url_for('.group', id=group.id ))
