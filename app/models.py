@@ -26,7 +26,7 @@ class User(UserMixin,db.Model):
     username = db.Column(db.String(255))
 
     # email column for a user's email address
-    email = db.Column(db.String(255), unique=True, index=True)
+    email = db.Column(db.String(255), unique = True, index = True)
 
     # password_hash column for passwords
     password_hash = db.Column(db.String(255))
@@ -62,6 +62,9 @@ class Group(db.Model):
     # name column for names of categories
     name = db.Column(db.String(255))
 
+    # relationship between group and line class
+    lines = db.relationship('Line', backref='group', lazy='dynamic')
+
     def save_group(self):
         '''
         Function that saves a new category to the groups table
@@ -72,7 +75,7 @@ class Group(db.Model):
     @classmethod
     def get_groups(cls):
         '''
-        Function that queries the database and returns all the information from the groups table
+        Function that queries the Groups Table in the database and returns all the information from the Groups Table
 
         Returns:
             groups : all the information in the groups table
@@ -81,6 +84,46 @@ class Group(db.Model):
         groups = Group.query.all()
 
         return groups
+
+
+class Line(db.Model):
+    '''
+    Line class to define the pitches
+    '''
+
+    # Name of the table
+    __tablename__ = 'lines'
+
+    # id column that is the primary key
+    id = db.Column(db.Integer, primary_key = True)
+
+    # line_content column for the one minute pitch a user writes
+    line_content = db.Column(db.String(255))
+
+    # group_id column for linking a line to a specific group
+    group_id = db.Column(db.Integer, db.ForeignKey("groups.id") )
+
+    def save_line(self):
+        '''
+        Function that saves a new pitch to the lines table
+        '''
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def get_lines(cls,id):
+        '''
+        Function that queries the Lines Table in the database and returns only information with the specified group id
+
+        Args:
+            id : specific group_id
+
+        Returns:
+            lines : all the information for lines with the specific group id 
+        '''
+        lines = Line.query.filter_by(group_id=id).all()
+
+        return lines
 
 
 
