@@ -14,7 +14,6 @@ class TestGroup(unittest.TestCase):
         Set up method that will run before every Test
         '''
         self.new_group = Group(name="Pick-up lines" )
-        pass
 
     def tearDown(self):
         '''
@@ -43,7 +42,13 @@ class TestGroup(unittest.TestCase):
         Test case to check if all groups are returned by the get_groups function
         '''
 
+        self.new_group.save_group()
+
+        test_group = Group(name="Product Pitches")
+
+        test_group.save_group()
+
         gotten_groups = Group.get_groups()
 
-        self.assertEqual( len(gotten_groups) , 1 )
+        self.assertTrue( len(gotten_groups) == len(Group.query.all()) )
 
