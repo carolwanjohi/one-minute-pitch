@@ -220,9 +220,20 @@ class Vote(db.Model):
         Args:
             user_id : specific user_id 
             line_id : specific line_id
+
+        .filter_by(user_id=user_id)
         '''
-        total_votes = Vote.query.filter_by(user_id=user_id).filter_by(line_id=line_id).count()
-        return total_votes
+        found_votes = Vote.query.filter(user_id==user_id,line_id==line_id).with_entities(Vote.vote_number).value(Vote.vote_number)
+        
+        count = 0
+
+        
+        for vote in range(found_votes):
+            count += vote.value
+        # for i in found_votes:
+        #     result = count + i.value()
+        #     return result
+        return count
 
 
 
