@@ -212,28 +212,17 @@ class Vote(db.Model):
         db.session.add(self)
         db.session.commit()
 
-    # @classmethod
-    # def up_vote(cls, user_id, group_id):
-    #     '''
-    #     Function that queries the Votes table in the databse if it has a vote with the specified user_id and line_id. If the vote exists it adds 0 to the vote_number column. If the vote does not exist it adds 1 to the vote_number and saves the new vote
+    @classmethod
+    def num_vote(cls, user_id, line_id):
+        '''
+        Function that queries the Votes table in the databse if it has a vote with the specified user_id and line_id and returns counts them
 
-    #     Args:
-    #         user_id : specific user_id 
-    #         line_id : specific line_id
-    #     '''
-    #     vote = Vote.query.filter_by(user_id=user_id).filter_by(line_id=line_id).first()
-
-    #     if vote is None:
-    #         new_vote_number = 1
-    #         new_vote = Vote(user_id=user_id,line_id=line_id,vote_number=new_vote_number)
-    #         db.session.add(new_vote)
-    #         db.session.commit()
-
-    #     else:
-    #         new_vote_number = vote.vote_number + 0
-    #         new_vote = Vote(user_id=user_id,line_id=line_id,vote_number=new_vote_number)
-    #         db.session.add(new_vote)
-    #         db.session.commit()
+        Args:
+            user_id : specific user_id 
+            line_id : specific line_id
+        '''
+        total_votes = Vote.query.filter_by(user_id=user_id).filter_by(line_id=line_id).count()
+        return total_votes
 
 
 

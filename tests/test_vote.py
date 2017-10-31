@@ -46,7 +46,7 @@ class TestVote(unittest.TestCase):
 
         self.assertTrue( len(Vote.query.all()) > 0 )
 
-    def test_up_vote(self):
+    def test_num_vote(self):
         '''
         Test to check if up_vote is working
         '''
@@ -55,6 +55,10 @@ class TestVote(unittest.TestCase):
         # self.user_jim = User(username = "Jim", password = "banana", email = "jim@doe.com" )
 
         # self.new_line = Line( line_content="I am Groot", group = self.group_pick_up, user=self.user_jim)
-        pass
+        self.new_vote.save_vote()
+        
+        gotten_votes = Vote.num_vote(13242143123412341234123,123412341234123412341234)
+
+        self.assertTrue( gotten_votes == 0)
 
 
