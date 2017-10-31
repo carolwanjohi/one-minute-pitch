@@ -13,19 +13,20 @@ class TestLine(unittest.TestCase):
         '''
         Set up method that will run before every Test
         '''
-        self.group_pick_up = Group( name="Pick-up lines" )
+        
+        # self.group_ditch = Group( name="Ditch Lines" )
 
-        self.user_jane = User(username = "Jane", password = "banana", email = "jane@doe.com" )
+        # self.user_boe = User(username = "Boe", password = "banana", email = "boe@doe.com" )
 
-        self.new_line = Line( line_content="I am Groot", group = self.group_pick_up, user = self.user_jane )
+        self.new_line = Line( line_content="I am Groot")
 
-    def tearDown(self):
-        '''
-        Using query.delete to delete elements in the database after each test
-        '''
-        Line.query.delete()
-        User.query.delete()
-        Group.query.delete()
+    # def tearDown(self):
+    #     '''
+    #     Using query.delete to delete elements in the database after each test
+    #     '''
+    #     Line.query.delete()
+    #     User.query.delete()
+    #     Group.query.delete()
 
     def test_instance(self):
         '''
@@ -37,19 +38,26 @@ class TestLine(unittest.TestCase):
         '''
         Test case to check if a line is saved to the databse
         '''
+        # user_dan =  User(username = "Dan", password = "banana", email = "dan@doe.com" )
+
+        # test_line = Line( line_content="I am Groot", group = self.group_ditch, user = user_dan )
 
         self.new_line.save_line()
 
         self.assertTrue( len(Line.query.all()) > 0)
+
+        # Line.query.delete()
+        # User.query.delete()
+        # Group.query.delete()
 
     def test_get_lines(self):
         '''
         Test case to check if a line and its information is returned by the get_lines function that takes in an id and match it to id in the group table
         '''
 
-        Line.query.delete()
-        User.query.delete()
-        Group.query.delete()
+        # Line.query.delete()
+        # User.query.delete()
+        # Group.query.delete()
 
         self.new_line.save_line()
 

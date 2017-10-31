@@ -1,6 +1,13 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField,SubmitField
+from wtforms import StringField,TextAreaField,SubmitField
 from wtforms.validators import Required
+
+class GroupForm(FlaskForm):
+    '''
+    Function to create a wtf form for creating a pitch
+    '''
+    name =  StringField('Category Name', validators=[Required()])
+    submit = SubmitField('Create')
 
 class LineForm(FlaskForm):
     '''
@@ -13,5 +20,5 @@ class CommentForm(FlaskForm):
     '''
     Function to create a wtf form for creating a feedback on a pitch
     '''
-    comment_content =  StringField('Comment', validators=[Required()])
+    comment_content =  TextAreaField('Comment', validators=[Required()])
     submit = SubmitField('Submit')

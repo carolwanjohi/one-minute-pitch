@@ -37,6 +37,9 @@ class User(UserMixin,db.Model):
     # relationship between user and comment class
     comments = db.relationship('Comment', backref='user', lazy='dynamic')
 
+    # relationship between line and comment class
+    votes = db.relationship('Vote', backref='user', lazy='dynamic')
+
     @property
     def password(self):
         raise AttributeError('You cannot read the password attribute')
@@ -104,7 +107,7 @@ class Line(db.Model):
     id = db.Column(db.Integer, primary_key = True)
 
     # line_content column for the one minute pitch a user writes
-    line_content = db.Column(db.String(255))
+    line_content = db.Column(db.String(200))
 
     # group_id column for linking a line to a specific group
     group_id = db.Column(db.Integer, db.ForeignKey("groups.id") )
@@ -114,6 +117,9 @@ class Line(db.Model):
 
     # relationship between line and comment class
     comments = db.relationship('Comment', backref='line', lazy='dynamic')
+
+    # relationship between line and comment class
+    votes = db.relationship('Vote', backref='line', lazy='dynamic')
 
     def save_line(self):
         '''
@@ -178,6 +184,59 @@ class Comment(db.Model):
         comments = Comment.query.filter_by(line_id=line_id).all()
 
         return comments
+
+class Vote(db.Model):
+    '''
+    Vote class to difine votes for a pitch
+    '''
+
+    # Name of the table
+    __tablename__ = 'votes'
+
+    # id column that is the primary key
+    id = db.Column(db.Integer, primary_key = True)
+
+    # user_id column for linking a line to a specific group
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id") )
+
+    # line_id column for linking a line to a specific line
+    line_id = db.Column(db.Integer, db.ForeignKey("lines.id") )
+
+    # vote_number column for the votes for a pitch by a user
+    vote_number =  db.Column(db.Integer)
+
+    def save_vote(self):
+        '''
+        Function that saves a new vote given to a pitch by a user
+        '''
+        db.session.add(self)
+        db.session.commit()
+
+    # @classmethod
+    # def up_vote(cls, user_id, group_id):
+    #     '''
+    #     Function that queries the Votes table in the databse if it has a vote with the specified user_id and line_id. If the vote exists it adds 0 to the vote_number column. If the vote does not exist it adds 1 to the vote_number and saves the new vote
+
+    #     Args:
+    #         user_id : specific user_id 
+    #         line_id : specific line_id
+    #     '''
+    #     vote = Vote.query.filter_by(user_id=user_id).filter_by(line_id=line_id).first()
+
+    #     if vote is None:
+    #         new_vote_number = 1
+    #         new_vote = Vote(user_id=user_id,line_id=line_id,vote_number=new_vote_number)
+    #         db.session.add(new_vote)
+    #         db.session.commit()
+
+    #     else:
+    #         new_vote_number = vote.vote_number + 0
+    #         new_vote = Vote(user_id=user_id,line_id=line_id,vote_number=new_vote_number)
+    #         db.session.add(new_vote)
+    #         db.session.commit()
+
+
+
 
 
 
