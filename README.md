@@ -43,7 +43,7 @@ This requires internet connection.
 
 ## Known Bugs
 
-No known bugs
+- Vote count
 
 ## Technologies Used
 - Python3.6
