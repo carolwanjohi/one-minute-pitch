@@ -13,22 +13,27 @@ class TestComment(unittest.TestCase):
         '''
         Set up method that will run before every Test
         '''
+        # Comment.query.delete()
+        # Line.query.delete()
+        # User.query.delete()
+        # Group.query.delete()
+
         self.group_pick_up = Group( name="Pick-up lines" )
 
         self.user_jane = User(username = "Jane", password = "banana", email = "jane@doe.com" )
 
         self.new_line = Line( line_content="I am Groot", group = self.group_pick_up, user = self.user_jane )
 
-        self.new_comment = Comment(comment_content="You need more practice", line=self.new_line, user=self.user_jane )
+        self.new_comment = Comment(comment_content="You need more practice")
 
-    def tearDown(self):
-        '''
-        Using query.delete to delete elements in the database after each test
-        '''
-        Comment.query.delete()
-        Line.query.delete()
-        User.query.delete()
-        Group.query.delete()
+    # def tearDown(self):
+    #     '''
+    #     Using query.delete to delete elements in the database after each test
+    #     '''
+    #     Comment.query.delete()
+    #     Line.query.delete()
+    #     User.query.delete()
+    #     Group.query.delete()
 
     def test_instance(self):
         '''
@@ -50,10 +55,10 @@ class TestComment(unittest.TestCase):
         '''
         Test case to check if a comment and its information is returned by the get_comments function that takes in an id and match it to id in the group table
         '''
-        Comment.query.delete()
-        Line.query.delete()
-        User.query.delete()
-        Group.query.delete()
+    #     Comment.query.delete()
+    #     Line.query.delete()
+    #     User.query.delete()
+    #     Group.query.delete()
 
         self.new_comment.save_comment()
 
