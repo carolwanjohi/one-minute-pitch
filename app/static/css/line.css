@@ -1,0 +1,25 @@
+/*Styles for the Line page*/
+.pitch-content, .pitch-author, .comment-content, .comment-author, a.comment-create {
+    font-family: 'Habibi', serif;
+}
+
+.col-xs-12.col-sm-12.col-md-8.col-lg-8.well.comment-well {
+    background-color: #FDFEFE;  
+}
+
+.pitch-content:hover, a.comment-create:hover, .glyphicon:hover {
+    color: #5DADE2;
+    text-decoration: none;
+}
+
+i.glyphicon, .votes {
+    font-size: 1.25em;
+}
+
+i.glyphicon {
+    color: #337ab7;
+}
+
+.votes {
+    margin-left: 0.10em;
+}
