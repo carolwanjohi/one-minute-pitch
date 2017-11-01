@@ -5,9 +5,9 @@
 ## By **[Carol Wanjohi](https://github.com/carolwanjohi)**
 
 ## Description
-[This]() is a web application that allows users to submit a pitch. Also, other users are allowed to vote on submitted pitches and leave comments to give their feedback on the pitches. For a user to submit a pitch, vote on a pitch or give feedback on a pitch they need to have an account. <br>
+[This](https://python-one-minute-pitch.herokuapp.com) is a web application that allows users to submit a pitch. Also, other users are allowed to vote on submitted pitches and leave comments to give their feedback on the pitches. For a user to submit a pitch, vote on a pitch or give feedback on a pitch they need to have an account. <br>
 
-The pitches are organized by categories. The current categories are: <br> 
+The pitches are organized by categories. Examples of categories: <br> 
 - pickup lines
 - interview pitches
 - product pitches
@@ -35,15 +35,15 @@ As a user I would like:
 
 ## Setup/Installation Requirements
 
-* Click [One Minute Pitch]() <br/>
+* Click [One Minute Pitch](https://python-one-minute-pitch.herokuapp.com) <br/>
   or <br/>
-* Copy [One Minute Pitch]() and  Paste the link on your prefered browerser
+* Copy [One Minute Pitch](https://python-one-minute-pitch.herokuapp.com) and  Paste the link on your prefered browerser
 
 This requires internet connection.
 
 ## Known Bugs
 
-No known bugs
+- Vote count
 
 ## Technologies Used
 - Python3.6
