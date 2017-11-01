@@ -1,1 +1,18 @@
 /*Styles for the home page*/
+.category-header, .category-name, .category-create {
+    font-family: 'Habibi', serif;
+}
+
+.col-xs-12.col-sm-12.col-md-8.col-lg-8.well.category-well {
+    background-color: #FDFEFE;  
+}
+
+.category-name a:hover, .category-create a:hover {
+    color: #5DADE2;
+    text-decoration: none;
+}
+
+
+
+
+

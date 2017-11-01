@@ -1,7 +1,7 @@
 from flask import render_template,request,redirect,url_for,abort
 from . import main
 from ..models import Group,Line,Comment,Vote
-from .forms import LineForm,CommentForm,GroupForm
+from .forms import LineForm,CommentForm,GroupForm,UpvoteForm
 from flask_login import login_required,current_user
 
 # Views
@@ -137,14 +137,14 @@ def upvote(id):
     new_vote.save_vote()
     return redirect(url_for('.single_line', id=line.id))
 
-@main.route('/line/downvote/<int:id>')
+@main.route('/line/downvote/<int:id>', methods=['GET','POST'])
 @login_required
 def downvote(id):
 
     '''
     View function that add one to the vote_number column in the votes table
     '''
-    line = Line.query.get(id)
+    line = Line.query.filter_by(id=id).first()
 
     new_vote = Vote(user=current_user, line=line, vote_number= -1)
     new_vote.save_vote()
