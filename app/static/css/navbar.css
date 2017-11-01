@@ -1,0 +1,33 @@
+/*Styles for the Nabasr*/
+.navbar {
+    font-family: 'Habibi', serif;
+    background-color: #FDFEFE;
+    border-color: #D6EAF8;
+}
+
+.navbar-inverse .navbar-brand { 
+    color:#283747;
+    font-size: 1.7em;
+}
+
+.navbar-inverse .navbar-nav > li > a { 
+    color:#283747; 
+    font-size: 1.25em;
+}
+
+.username {
+    margin-top:0.85em;
+    color:#283747; 
+    font-size: 1.25em;
+}
+
+@media only screen and (max-width: 425px) {
+    .username {     
+        margin-left: 0.85em;
+        margin-top: 0;
+        margin-bottom: 0;
+        font-size: 1.15em;
+        color:#283747; 
+        font-size: 1.25em;
+    }
+}

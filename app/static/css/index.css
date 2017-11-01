@@ -4,7 +4,8 @@
 }
 
 .col-xs-12.col-sm-12.col-md-8.col-lg-8.well.category-well {
-    background-color: #FDFEFE;  
+    background-color: #FDFEFE;
+    border-color: #D6EAF8;  
 }
 
 .category-name a:hover, .category-create a:hover {
