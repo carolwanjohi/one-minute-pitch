@@ -2,6 +2,7 @@ from . import db
 from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import UserMixin
 from . import login_manager
+from sqlalchemy import func
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -213,7 +214,7 @@ class Vote(db.Model):
         db.session.commit()
 
     @classmethod
-    def num_vote(cls, user_id, line_id):
+    def num_vote(cls,line_id):
         '''
         Function that queries the Votes table in the databse if it has a vote with the specified user_id and line_id and returns counts them
 
@@ -224,8 +225,10 @@ class Vote(db.Model):
         .filter_by(user_id=user_id)
 
         found_votes = Vote.query.filter(user_id==user_id,line_id==line_id).with_entities(Vote.vote_number).value(Vote.vote_number)
-        '''
+
         found_votes = Vote.query.filter(user_id==user_id,line_id==line_id).with_entities(Vote.vote_number).count()
+        '''
+        found_votes = Vote.query(func.sum(Vote.vote_number)).filter(Vote.line_id == line_id).one()[0]
         
         # count = 0
 

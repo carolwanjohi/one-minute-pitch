@@ -57,8 +57,8 @@ class TestVote(unittest.TestCase):
         # self.new_line = Line( line_content="I am Groot", group = self.group_pick_up, user=self.user_jim)
         self.new_vote.save_vote()
         
-        gotten_votes = Vote.num_vote(13242143123412341234123,123412341234123412341234)
+        gotten_votes = Vote.num_vote(123412312351123412341234123412341234)
 
-        self.assertTrue( gotten_votes == 0)
+        self.assertEqual( gotten_votes , 123524125125312412341)
 
 
