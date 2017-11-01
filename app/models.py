@@ -2,7 +2,7 @@ from . import db
 from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import UserMixin
 from . import login_manager
-from sqlalchemy import func
+from sqlalchemy.sql import func
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -224,11 +224,20 @@ class Vote(db.Model):
 
         .filter_by(user_id=user_id)
 
+        .(func.sum(Vote.vote_number))
+
         found_votes = Vote.query.filter(user_id==user_id,line_id==line_id).with_entities(Vote.vote_number).value(Vote.vote_number)
 
         found_votes = Vote.query.filter(user_id==user_id,line_id==line_id).with_entities(Vote.vote_number).count()
         '''
-        found_votes = Vote.query(func.sum(Vote.vote_number)).filter(Vote.line_id == line_id).one()[0]
+        found_votes = db.session.query(func.sum(Vote.vote_number))
+        found_votes = found_votes.group_by(Vote.line_id)
+        votes_list = sum([i[0] for i in found_votes.all()])
+        # total_votes = sum(i for i in found_votes.all())
+        # for _res in found_votes.all():
+        #     total_votes = sum(_res)
+        #     return total_votes
+
         
         # count = 0
 
@@ -238,7 +247,7 @@ class Vote(db.Model):
         # for i in found_votes:
         #     result = count + i.value()
         #     return result
-        return found_votes
+        return votes_list
 
 
 

@@ -94,7 +94,7 @@ def single_line(id):
 
     # vote = Vote.query.all()
 
-    total_votes = Vote.num_vote(line.user.id,line.id)
+    total_votes = Vote.num_vote(line.id)
 
     title = f'Pitch {line.id}'
 

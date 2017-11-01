@@ -59,6 +59,6 @@ class TestVote(unittest.TestCase):
         
         gotten_votes = Vote.num_vote(123412312351123412341234123412341234)
 
-        self.assertEqual( gotten_votes , 123524125125312412341)
+        self.assertEqual( gotten_votes , 0)
 
 
