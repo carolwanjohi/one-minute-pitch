@@ -1,0 +1,12 @@
+/*Styles for the New Line page*/
+
+.col-xs-12.col-sm-12.col-md-8.col-lg-8.create-line {
+    font-family: 'Habibi', serif;
+    font-size: 1.5em;
+}
+
+input#submit.btn.btn-default {
+    background-color: #A3E4D7;
+    border-color: #73C6B6;
+    font-size: 0.75em;
+}
