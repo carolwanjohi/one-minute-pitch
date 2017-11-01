@@ -1,0 +1,13 @@
+/*Styles for the Group page*/
+.group-header, .pitch-content, .group-create, .pitch-author {
+    font-family: 'Habibi', serif;
+}
+
+.col-xs-12.col-sm-12.col-md-8.col-lg-8.well.group-well {
+    background-color: #FDFEFE;  
+}
+
+.pitch-content:hover, .group-create a:hover {
+    color: #5DADE2;
+    text-decoration: none;
+}

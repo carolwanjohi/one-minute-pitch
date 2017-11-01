@@ -46,19 +46,19 @@
                 
             </div>
 
-            <div class=" col-xs-12 col-sm-12 col-md-8 col-lg-8">
+            <div class=" col-xs-12 col-sm-12 col-md-8 col-lg-8 well group-well">
             
                 <li class="text-center">
 
                     <h3>
 
-                        <a href="{{url_for('main.single_line', id = line.id )}}">
+                        <a href="{{url_for('main.single_line', id = line.id )}}" class="pitch-content">
                             {{ line.line_content }}
                         </a>
 
                         <br>
 
-                        <small> by {{ line.user.username }} </small>
+                        <small class="pitch-author"> by {{ line.user.username }} </small>
                         
                     </h3>
 
