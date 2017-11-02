@@ -3,6 +3,10 @@
     font-family: 'Habibi', serif;
 }
 
+.line-create {
+    text-align: right;
+}
+
 .col-xs-12.col-sm-12.col-md-8.col-lg-8.well.line-well {
     background-color: #FDFEFE;
     border-color: #D6EAF8;  

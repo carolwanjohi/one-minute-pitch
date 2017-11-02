@@ -72,18 +72,40 @@
             </div>
 
         </div>
+
+        <hr>
+
+        <div class="row">
+            <div class="col-md-4 col-lg-4">
+
+                <h2 class="comment-header">
+                    List of Comments
+                </h2>
+                
+            </div>
+
+            <div class="col-md-4 col-lg-4">
+                
+            </div>
+
+            <div class="col-md-4 col-lg-4">
+
+                <h3 class="comment-create">
+                    <a href="/line/new/{{line.id}}">
+                        Add Comment
+                    </a>
+                </h3>
+                
+            </div>
+        </div>
+
+        <hr>
         
 
         <ul class="list-unstyled">
             {{ macro.displayCommentList(comments) }}
         </ul>
 
-
-        <h3>
-            <a href="/line/new/{{line.id}}" class="comment-create">
-                Comment
-            </a>
-        </h3>
 
     </div>
 {% endblock %}

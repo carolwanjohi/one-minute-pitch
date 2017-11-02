@@ -121,7 +121,7 @@ def new_comment(id):
 
         return redirect(url_for('.single_line', id=line.id ))
 
-    title = 'New Line'
+    title = 'New Comment'
     return render_template('new_comment.html', title=title, comment_form=form)
 
 @main.route('/line/upvote/<int:id>')

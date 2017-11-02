@@ -1,6 +1,10 @@
 /*Styles for the Line page*/
-.pitch-content, .pitch-author, .comment-content, .comment-author, a.comment-create {
+.pitch-content, .pitch-author, .comment-content, .comment-author, .comment-create, .comment-header {
     font-family: 'Habibi', serif;
+}
+
+.comment-create {
+    text-align: right;
 }
 
 .col-xs-12.col-sm-12.col-md-8.col-lg-8.well.comment-well {
@@ -8,7 +12,7 @@
     border-color: #D6EAF8;  
 }
 
-.pitch-content:hover, a.comment-create:hover, .glyphicon:hover {
+.pitch-content:hover, .comment-create a:hover, .glyphicon:hover {
     color: #5DADE2;
     text-decoration: none;
 }
