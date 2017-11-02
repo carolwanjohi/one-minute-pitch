@@ -231,7 +231,7 @@ class Vote(db.Model):
         found_votes = Vote.query.filter(user_id==user_id,line_id==line_id).with_entities(Vote.vote_number).count()
         '''
         found_votes = db.session.query(func.sum(Vote.vote_number))
-        found_votes = found_votes.group_by(Vote.line_id)
+        found_votes = found_votes.filter_by(line_id=line_id).group_by(Vote.line_id)
         votes_list = sum([i[0] for i in found_votes.all()])
         # total_votes = sum(i for i in found_votes.all())
         # for _res in found_votes.all():

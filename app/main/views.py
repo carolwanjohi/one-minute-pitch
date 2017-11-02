@@ -137,7 +137,7 @@ def upvote(id):
     new_vote.save_vote()
     return redirect(url_for('.single_line', id=line.id))
 
-@main.route('/line/downvote/<int:id>', methods=['GET','POST'])
+@main.route('/line/downvote/<int:id>')
 @login_required
 def downvote(id):
 
