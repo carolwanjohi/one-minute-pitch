@@ -17,6 +17,11 @@
     text-decoration: none;
 }
 
+i.glyphicon.glyphicon-menu-left.back-icon {
+    margin-top: 1.25em;
+    font-size: 2em;
+}
+
 i.glyphicon, .votes {
     font-size: 1.25em;
 }
