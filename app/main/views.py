@@ -137,6 +137,7 @@ def upvote(id):
     new_vote.save_vote()
     return redirect(url_for('.single_line', id=line.id))
 
+
 @main.route('/line/downvote/<int:id>')
 @login_required
 def downvote(id):
@@ -145,10 +146,13 @@ def downvote(id):
     View function that add one to the vote_number column in the votes table
     '''
     line = Line.query.filter_by(id=id).first()
-
+    
     new_vote = Vote(user=current_user, line=line, vote_number= -1)
     new_vote.save_vote()
     return redirect(url_for('.single_line', id=line.id))
+
+
+
 
 
 
