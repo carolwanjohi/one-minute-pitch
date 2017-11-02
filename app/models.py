@@ -214,6 +214,22 @@ class Vote(db.Model):
         db.session.commit()
 
     @classmethod
+    def get_votes(cls,user_id,line_id):
+        '''
+        Function that queries the Votes Table in the database and returns only information with the specified user id and line id
+
+        Args:
+            user : specific line_id
+            line_id : specific line_id
+
+        Returns:
+            votes : all the information for votes with the specific user id and line id 
+
+        '''
+        votes = Vote.query.filter_by(user_id=user_id, line_id=line_id).all()
+        return votes
+
+    @classmethod
     def num_vote(cls,line_id):
         '''
         Function that queries the Votes table in the databse if it has a vote with the specified user_id and line_id and returns counts them

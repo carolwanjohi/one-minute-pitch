@@ -46,6 +46,21 @@ class TestVote(unittest.TestCase):
 
         self.assertTrue( len(Vote.query.all()) > 0 )
 
+    def test_get_votes(self):
+        '''
+        Test case to check if a line and its information is returned by the get_lines function that takes in an id and match it to id in the group table
+        '''
+
+        # Line.query.delete()
+        # User.query.delete()
+        # Group.query.delete()
+
+        self.new_vote.save_vote()
+
+        gotten_votes = Vote.get_votes(4990826417581240726341234,41872308461293846123987412893471)
+
+        self.assertFalse( len(gotten_votes) , 1)
+
     def test_num_vote(self):
         '''
         Test to check if up_vote is working
