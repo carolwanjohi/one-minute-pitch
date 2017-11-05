@@ -24,6 +24,7 @@ As a user I would like:
 ## Specifications
 | Behavior        | Input           | Outcome  |
 | ------------- |:-------------:| -----:|
+| Register to be a user | Your email : jane@doe.com <br> Username : jane101 <br> Password : doe1 | New user is registered |
 | Log in | Your email : jane@doe.com <br> Password : doe1 | Logged in |
 | Display pitch categories | N/A | List of various pitch categories |
 | See pitches from selected category | **Click** a category | Directed to a page with a list of pitches from the selected category |
